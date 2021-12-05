@@ -1,0 +1,70 @@
+/** @section Dividers */
+
+hr {
+	margin-top: 0;
+	margin-bottom: 0;
+	border-top: $hr-border-width solid $hr-border-color;
+}
+
+.divider {
+	font-size: 0;
+	line-height: 0;
+
+	&::after {
+		content: '';
+		display: inline-block;
+		width: 60px;
+		height: 2px;
+		background-color: $primary;
+	}
+}
+
+
+// Divider Classic
+h4 + .divider-classic {
+	margin-top: 11px;
+}
+
+h6 + .divider-classic {
+	margin-top: 17px;
+}
+
+.divider-classic {
+	height: 1px;
+	background-color: $white-1;
+}
+
+.divider-classic-1 {
+		margin-top: 54px;
+}
+
+.divider-classic-2 {
+	margin: 38px 0 51px;
+}
+
+
+// Divider Primary
+.divider-primary {
+	height: 3px;
+	background-color: $primary;
+	width: 90px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h2 + .divider-primary {
+	margin-top: 43px;
+}
+
+.divider-primary + .button {
+	margin-top: 51px;
+}
+
+
+// Medium ≥768px
+@include media-breakpoint-up(md) {
+	.w-md-72 {
+		width: 72%;
+	}
+}
+

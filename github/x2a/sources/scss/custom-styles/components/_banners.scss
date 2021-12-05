@@ -1,0 +1,99 @@
+/** @section Banners */
+
+
+// Banner Classic
+.banner-classic {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	padding: 100px 30px;
+
+	// Medium ≥768px
+	@include media-breakpoint-up(md) {
+		padding: 47px;
+		padding-bottom: 162px;
+	}
+
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 0;
+}
+
+.banner-classic-content {
+	width: 280px;
+}
+
+.banner-classic-subtitle + .banner-classic-title {
+	margin-top: 12px;
+}
+
+.banner-classic-subtitle {
+	font-family: $font-family-base;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+.banner-classic-title {
+	border-left: 1px solid $white-1;
+	padding-left: 25px;
+	line-height: 1.2;
+}
+
+.banner-classic-title + .button {
+	margin-top: 23px;
+	padding-left: 32px;
+	padding-right: 32px;
+}
+
+
+// Banner Classic
+.banner-creative {
+	position: relative;
+
+	.box-event {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+		background-color: rgba($gray-800, .64);
+		color: $white;
+		opacity: 0;
+		transition: $transition-base;
+
+		// Extra large ≥1200px
+		@include media-breakpoint-up(xl) {
+			padding: 29px 38px 39px 35px;
+		}
+
+		.owl-item.active & {
+			opacity: 1;
+		}
+	}
+
+	.box-event-text-title {
+		color: $white;
+
+		// Small <576px
+		@include media-breakpoint-down(xs) {
+			line-height: 1;
+		}
+
+		// Medium ≥576px
+		@include media-breakpoint-up(sm) {
+			font-size: 24px;
+		}
+	}
+
+	.box-event-text-location {
+		color: $primary;
+	}
+}
+
+.banner-creative-figure {
+	img {
+		width: 100%;
+	}
+}
+
+
+

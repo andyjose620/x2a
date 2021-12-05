@@ -1,0 +1,37 @@
+mixin jp-classic( obj )
+	.jp-classic.jp-player-init
+		.jp-jplayer
+		.jp-audio(class=`jp-audio-${obj.i}` role='application', aria-label='media player')
+			ul.jp-player-list
+				each playerItem in obj.playerList
+					li.jp-player-list-item(
+						data-jp-title= playerItem.title,
+						data-jp-artist= playerItem.artist,
+						data-jp-mp3= playerItem.track
+					)
+			figure.jp-panel-controls
+				+img(obj.img)
+				
+				.jp-current-time
+				
+				.jp-button.jp-controls
+					button.jp-btn.jp-previous(tabindex='0')
+					button.jp-btn.jp-play(tabindex='0')
+					button.jp-btn.jp-next(tabindex='0')
+				
+				.jp-seek-bar
+					.jp-play-bar
+			
+			.jp-classic-body
+				
+				.jp-playlist
+					ul
+						li
+				
+				ul.jp-classic-linklist
+					li: a(href='#')
+						+img('itunes-21x21.png')
+						span iTunes
+					li: a(href='#')
+						+img('spotify-19x19.png')
+						span Spotify

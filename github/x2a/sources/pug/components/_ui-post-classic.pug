@@ -1,0 +1,8 @@
+mixin post-classic( obj )
+	article.post-classic
+		figure.post-classic-figure
+			a(href= '#'): +img( obj.img )
+		.post-classic-content
+			time.post-classic-time(datetime="2019-09-19") Sep 19, 2019
+			h5.post-classic-title: a(href= '#')= obj.title
+			a(href= '#').post-classic-link read more

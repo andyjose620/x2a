@@ -1,0 +1,94 @@
+include ../components/_ui-box-evet
+
++parallax({
+	img: 'bg-footer-1920x1285.jpg'
+}).parallax-overlay-01
+	.section-sm.prefooter-custom
+		.container
+			.row.row-30
+				.col-lg-6
+					.google-map-container.google-map-container-custom-1( data-center='new york, USA', data-zoom='5' data-styles='[{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]}]' )
+						.google-map
+						ul.google-map-markers
+							li( data-location='Bayfront Park, Miami, USA'
+							data-description='ULTRA MUSIC FESTIVAL'
+							data-icon='images/gmap_marker-1.png'
+							data-icon-active='images/gmap_marker-1.png'
+							)
+							li( data-location='Brooklyn, New York, United States'
+							data-description='CLUB CULTURAL'
+							data-icon='images/gmap_marker-2.png'
+							data-icon-active='images/gmap_marker-2.png'
+							)
+							li( data-location='Hamilton Township Pennsylvania, United States'
+							data-description='A summer story'
+							data-icon='images/gmap_marker-3.png'
+							data-icon-active='images/gmap_marker-3.png'
+							)
+							li( data-location='Montgomery Veterans Park / Arboretum, Harlingen Road, United States'
+							data-description='EXPO CENTER TRENciN'
+							data-icon='images/gmap_marker-4.png'
+							data-icon-active='images/gmap_marker-4.png'
+							)
+							li( data-location='West Milford New Jersey, USA'
+							data-description='WKND FESTIVAL BALTICS'
+							data-icon='images/gmap_marker-5.png'
+							data-icon-active='images/gmap_marker-5.png'
+							)
+				.col-lg-6
+					h3 tour dates
+					
+					.box-event-wrap.scroll-wrap
+						+box-event({
+							day: '25',
+							month: 'feb',
+							title: 'ULTRA MUSIC FESTIVAL',
+							locations: ['Miami', 'USA']
+						})
+						+box-event({
+							day: '12',
+							month: 'mar',
+							title: 'edc orlando',
+							locations: ['Tinkler Field', 'Orlando', 'USA']
+						})
+						+box-event({
+							day: '24',
+							month: 'apr',
+							title: 'Electric zoo',
+							locations: ['Randall’s Island Park', 'New York', 'USA']
+						})
+						+box-event({
+							day: '17',
+							month: 'jul',
+							title: 'Nocturnal Wonderland',
+							locations: ['Glen Helen National Park', 'USA']
+						})
+						+box-event({
+							day: '18',
+							month: 'aug',
+							title: 'Coachella',
+							locations: ['Empire Polo Club', 'Indio', 'USA']
+						})
+						
+						+box-event({
+							day: '12',
+							month: 'OCT',
+							title: 'Let It Roll',
+							locations: ['Milovice', 'Czech Republic']
+						})
+
+
+footer.section.footer-classic.bg-default
+	.container
+		.row.row-15
+			.col-sm-6
+				+rights
+				
+			.col-sm-6
+				.footer-contact
+					a(href= 'tel:#')
+						.icon.novi-icon.mdi.mdi-phone
+						| +1 (409) 987–5874
+					a(href= 'mailto:#')
+						.icon.novi-icon.mdi.mdi-email-outline
+						| info@demolink.org

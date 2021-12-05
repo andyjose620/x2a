@@ -1,0 +1,13 @@
+mixin box-event( obj )
+	.box-event.novi-bg
+		.box-event-date-wrap
+			h3.box-event-date-day= obj.day
+			p.box-event-date-month= obj.month
+		.box-event-text-wrap
+			h5.box-event-text-title: a(href='#')= obj.title
+			ul.box-event-text-location
+				each location in obj.locations
+					li= location
+		if ( obj.button != false )
+			.box-event-button-wrap
+				a(href='#').button.button-outline.button-sm buy tickets

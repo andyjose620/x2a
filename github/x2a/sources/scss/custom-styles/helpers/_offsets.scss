@@ -1,0 +1,253 @@
+/** @section Offsets */
+
+// Elements offset
+* + p {
+	margin-top: 21px;
+}
+
+// Headings
+
+// Headings + Paragraph
+h1 + p,
+.heading-1 + p {
+	margin-top: 50px;
+}
+
+h2 + p,
+.heading-2 + p {
+	margin-top: 21px;
+}
+
+h2 + *,
+.heading-2 + * {
+	margin-top: 30px;
+
+	// Medium ≥768px
+	@include media-breakpoint-up(md) {
+		margin-top: 55px;
+	}
+}
+
+h2 + .row-125 {
+	margin-top: 83px;
+}
+
+h3 + p,
+.heading-3 + p {
+	margin-top: 15px;
+}
+
+h3 + *,
+.heading-3 + * {
+	margin-top: 32px;
+}
+
+.icon + h3,
+.icon + .heading-3 {
+	margin-top: 22px;
+}
+
+h4 + p,
+.heading-4 + p {
+	margin-top: 21px;
+}
+
+h4 + .group-custom,
+.heading-4 + .group-custom {
+	margin-top: 42px;
+}
+
+h4 + * {
+	margin-top: 55px;
+}
+
+h4 + h4 {
+	margin-top: 55px;
+}
+
+h5 + p,
+.heading-5 + p {
+	margin-top: 27px;
+}
+
+h5 + h1 {
+	margin-top: 22px;
+}
+
+h6 + p,
+.heading-6 + p {
+	margin-top: 19px;
+}
+
+h6 + h2 {
+	margin-top: 14px;
+}
+
+h6 + h3,
+.heading-6 + h3 {
+	margin-top: 6px;
+}
+
+// Paragraph + Headings
+p + h2,
+p + .heading-2 {
+	margin-top: 15px;
+}
+
+// Tags + Tags
+p + p {
+	margin-top: 35px;
+}
+
+img + p {
+	margin-top: 15px;
+}
+
+h3 + img {
+	margin-top: 42px;
+}
+
+// Classes
+* + .row {
+	margin-top: 30px;
+}
+
+// Medium ≥768px
+@include media-breakpoint-up(md) {
+	* + .row {
+		margin-top: 45px;
+	}
+}
+
+// Extra large ≥1200px
+@include media-breakpoint-up(xl) {
+	* + .row {
+		margin-top: 60px;
+	}
+}
+
+* + .big {
+	margin-top: 20px;
+}
+
+* + .text-block {
+	margin-top: 30px;
+}
+
+* + .button {
+	margin-top: 30px;
+}
+
+* + .button-wrap {
+	margin-top: 30px;
+}
+
+
+* + .box-timeline-wrap {
+	margin-top: 30px;
+
+	// Extra large ≥1200px
+	@include media-breakpoint-up(xl) {
+		margin-top: 60px;
+	}
+}
+
+.group-custom + .rd-form {
+	margin-top: 40px;
+}
+
+// Classes + Tags
+.row + h3,
+.row + .heading-3 {
+	margin-top: 80px;
+}
+
+// Classes + Classes
+.container + .container {
+	margin-top: 35px;
+}
+
+.row + .row {
+	margin-top: 35px;
+}
+
+// Media offsets
+@include media-breakpoint-up(xl) {
+	* + .rd-form {
+		margin-top: 43px;
+	}
+
+	.container + .container {
+		margin-top: 60px;
+	}
+	.row + .row {
+		margin-top: 60px;
+	}
+}
+
+// Range spacing
+.row-0 {
+	@include grid-offset(0px);
+}
+
+.row-15 {
+	@include grid-offset(15px);
+}
+
+.row-20 {
+	@include grid-offset(20px);
+}
+
+.row-30 {
+	@include grid-offset(30px);
+}
+
+.row-34 {
+	@include grid-offset(34px);
+}
+
+.row-40 {
+	@include grid-offset(40px);
+}
+
+.row-43 {
+	@include grid-offset(43px);
+}
+
+.row-50 {
+	@include grid-offset(50px);
+}
+
+.row-55 {
+	@include grid-offset(55px);
+}
+
+.row-60 {
+	@include grid-offset(60px);
+}
+
+.row-75 {
+	@include grid-offset(75px);
+}
+
+.row-125 {
+	@include grid-offset(80px);
+
+	// Medium ≥768px
+	@include media-breakpoint-up(md) {
+		@include grid-offset(125px);
+	}
+}
+
+// Large ≥992px
+@include media-breakpoint-up(lg) {
+	.row-lg-75 {
+		@include grid-offset(75px);
+	}
+}
+
+@include media-breakpoint-up(lg) {
+	.row-md-30 {
+		@include grid-offset(30px);
+	}
+}

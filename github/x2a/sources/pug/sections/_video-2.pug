@@ -1,0 +1,53 @@
+//Bootstrap tabs
+#tabs-2.tabs-custom.tabs-vertical.tabs-video
+	
+	//Tab panes
+	.tab-content
+		div#tabs-2-1.tab-pane.fade.show.active
+			.entry-video.embed-responsive.embed-responsive-16by9
+				iframe(width='886', height='668', src='//www.youtube.com/embed/4gRjnaitguQ', allowfullscreen='')
+		
+		div#tabs-2-2.tab-pane.fade
+			.entry-video.embed-responsive.embed-responsive-16by9
+				iframe(width='886', height='668', src='//www.youtube.com/embed/mfMR-URQl80', allowfullscreen='')
+		
+		div#tabs-2-3.tab-pane.fade
+			.entry-video.embed-responsive.embed-responsive-16by9
+				iframe(width='886', height='668', src='//www.youtube.com/embed/xweHsBLcqp4', allowfullscreen='')
+		
+		div#tabs-2-4.tab-pane.fade
+			.entry-video.embed-responsive.embed-responsive-16by9
+				iframe(width='886', height='668', src='//www.youtube.com/embed/V3pPMUmIxAc', allowfullscreen='')
+		
+		div#tabs-2-5.tab-pane.fade
+			.entry-video.embed-responsive.embed-responsive-16by9
+				iframe(width='886', height='668', src='//www.youtube.com/embed/N1DEOCUujUg', allowfullscreen='')
+	
+	
+	.scroll-wrap
+		//Nav tabs
+		ul.nav.nav-tabs
+			li.nav-item(role='presentation'): a.nav-link.active(href='#tabs-2-1' data-toggle='tab')
+				.nav-video
+					figure.nav-video-figure: +img('video-01-140x81.jpg')
+					h6.nav-video-title Armin van Buuren Live at Tomorrowland 2015
+			
+			li.nav-item(role='presentation'): a.nav-link(href='#tabs-2-2' data-toggle='tab')
+				.nav-video
+					figure.nav-video-figure: +img('video-02-140x81.jpg')
+					h6.nav-video-title Juicy M - Live at MEO Sudoeste Festival
+			
+			li.nav-item(role='presentation'): a.nav-link(href='#tabs-2-3' data-toggle='tab')
+				.nav-video
+					figure.nav-video-figure: +img('video-03-140x81.jpg')
+					h6.nav-video-title Armin van Buuren feat. Angel Taylor - Make It Right
+			
+			li.nav-item(role='presentation'): a.nav-link(href='#tabs-2-4' data-toggle='tab')
+				.nav-video
+					figure.nav-video-figure: +img('video-04-140x81.jpg')
+					h6.nav-video-title Armin Only crew taking over Sydney! Armin Only VLOG
+			
+			li.nav-item(role='presentation'): a.nav-link(href='#tabs-2-5' data-toggle='tab')
+				.nav-video
+					figure.nav-video-figure: +img('video-05-140x81.jpg')
+					h6.nav-video-title Armin Only crew taking over San Francisco!

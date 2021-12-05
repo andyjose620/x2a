@@ -1,0 +1,215 @@
+/**
+*
+* RD Navbar Classic
+* =====================================================
+*/
+.rd-navbar-classic {
+
+	// Static
+	&.rd-navbar-static {
+		border-bottom: 1px solid transparent;
+
+		.rd-megamenu-list-item,
+		.rd-dropdown-item {
+			height: 40px;
+		}
+
+		.rd-megamenu-list-item + .rd-megamenu-list-item,
+		.rd-dropdown-item + .rd-dropdown-item {
+			margin-top: 3px;
+		}
+
+		// RD Nav item 1-st level
+		.rd-nav-item {
+
+			&.focus,
+			&.opened {
+				.rd-nav-link {
+					&::before,
+					&::after {
+						opacity: 1;
+					}
+
+					&::before {
+						width: 56%;
+					}
+
+					&::after {
+						width: 86%;
+					}
+				}
+
+				> .rd-navbar-submenu-toggle {
+				}
+			}
+
+			&.active {
+				.rd-nav-link {
+					&::before,
+					&::after {
+						opacity: 1;
+					}
+
+					&::before {
+						width: 56%;
+					}
+
+					&::after {
+						width: 86%;
+					}
+				}
+			}
+		}
+
+
+		// Rd Nav Link 1-st level
+		.rd-nav-link {
+			&::before,
+			&::after {
+				content: '';
+				display: block;
+				position: absolute;
+				height: 2px;
+				background-color: $primary;
+				opacity: 0;
+				transition: $transition-base;
+				pointer-events: none;
+				width: 100%;
+			}
+
+			&::before {
+				left: -3px;
+				bottom: -11px;
+			}
+
+			&::after {
+				right: 0;
+				bottom: -6px;
+			}
+
+			&:hover {
+				&::before,
+				&::after {
+					opacity: 1;
+				}
+
+				&::before {
+					width: 56%;
+				}
+
+				&::after {
+					width: 86%;
+				}
+			}
+		}
+
+
+		// RD Dropdown 1-st level
+		.rd-navbar-dropdown,
+		.rd-megamenu-list {
+			@include submenu-with-border;
+		}
+
+
+		// RD all megamenu
+		.rd-navbar-megamenu {
+			background: $rd-navbar-dropdown-background;
+		}
+
+
+		// Megamenu item 1st level
+		.rd-megamenu-item {
+
+			+ .rd-megamenu-item {
+				.rd-megamenu-list {
+					border-left: 1px solid $white-1;
+				}
+			}
+		}
+
+
+		// Megamenu title
+		.rd-megamenu-title {
+			background-color: #1f2e40;
+			padding: 20px 31px;
+		}
+
+
+		// Megamenu list
+		.rd-megamenu-list {
+			padding: 7px 14px 42px;
+		}
+
+
+		.rd-navbar-aside,
+		.rd-navbar-main {
+			max-width: $rd-navbar-static-width;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.rd-navbar-aside {
+			padding: 10px 0;
+		}
+
+		.rd-navbar-main {
+			align-items: center;
+			justify-content: space-between;
+			padding: 20px 0;
+			
+			@include media-breakpoint-up(xl) {
+				padding: 36px 0;
+			} 
+		}
+
+		// RD Navbar Brand
+		.rd-navbar-brand {
+			img {
+				height: auto;
+				max-width: 200px;
+				max-height: 200px;
+			}
+		}
+
+		.rd-navbar-main-element {
+			display: flex;
+			align-items: center;
+		}
+
+		&.rd-navbar--is-stuck,
+		&.rd-navbar--is-clone {
+			border-bottom-color: nth($rd-navbar-border, 3);
+
+			.rd-navbar-aside-outer {
+				display: none;
+			}
+
+			.rd-navbar-main {
+				padding: 9px 0;
+			}
+
+			.rd-navbar-nav-item {
+				> .rd-navbar-submenu {
+					margin-top: 17px;
+				}
+			}
+		}
+
+
+	}
+
+	// Fixed
+	&.rd-navbar-fixed {
+
+	}
+}
+
+html.rd-navbar-static-linked {
+	.page-header {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 1080;
+	}
+}

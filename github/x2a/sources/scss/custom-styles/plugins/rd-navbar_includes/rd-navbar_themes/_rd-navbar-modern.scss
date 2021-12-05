@@ -1,0 +1,152 @@
+/**
+*
+* RD Navbar Modern
+* =====================================================
+*/
+.rd-navbar-modern {
+	background-color: $gray-760;
+
+	// Static
+	&.rd-navbar-static {
+		background-color: $gray-760;
+
+		// RD Nav item 1-st level
+		.rd-nav-item {
+
+			&.focus,
+			&.opened {
+				.rd-nav-link {
+
+					&::before {
+						opacity: 1;
+						width: 100%;
+					}
+				}
+
+				> .rd-navbar-submenu-toggle {
+				}
+			}
+
+			&.active {
+				.rd-nav-link {
+
+					&::before {
+						opacity: 1;
+						width: 100%;
+					}
+				}
+			}
+		}
+
+
+		// Rd Nav Link 1-st level
+		.rd-nav-link {
+			&::before {
+				content: '';
+				display: block;
+				position: absolute;
+				height: 2px;
+				background-color: $primary;
+				opacity: 0;
+				transition: $transition-base;
+				pointer-events: none;
+				width: 0;
+				left: 3px;
+				bottom: -7px;
+			}
+
+			&:hover {
+				&::before {
+					opacity: 1;
+					width: 100%;
+				}
+			}
+		}
+
+
+		// RD Dropdown 1-st level
+		.rd-navbar-dropdown {
+			background: $gray-760;
+			padding: 17px 15px 24px 13px;
+		}
+
+		.rd-navbar-dropdown,
+		.rd-megamenu-list {
+			@include submenu-with-arrow;
+		}
+
+
+		// Rd Menu (dropdown and megamenu)
+		.rd-menu {
+			margin-top: 20px;
+		}
+
+
+		// RD all megamenu
+		.rd-navbar-megamenu {
+			border-top: 1px solid $white-1;
+			max-width: $custom-container-width-xxl - $grid-gutter-width;
+			background: $gray-760;
+		}
+
+
+		// Megamenu item 1st level
+		.rd-megamenu-item {
+			padding: 18px 8px 70px 34px;
+
+			+ .rd-megamenu-item {
+				border-left: 1px solid $white-1;
+			}
+		}
+
+
+		// Megamenu list
+		.rd-megamenu-list {
+			column-count: 2;
+		}
+
+
+		// Megamenu list offset
+		* + .rd-megamenu-list {
+			margin-top: 24px;
+		}
+
+
+		.rd-navbar-aside,
+		.rd-navbar-main {
+			max-width: $custom-container-width-xxl - $grid-gutter-width;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.rd-navbar-main-element-wrap {
+			display: flex;
+			align-items: center;
+		}
+
+		.rd-navbar-divider {
+			width: 1px;
+			height: 17px;
+			background-color: $white-5;
+			margin: 0 30px;
+		}
+
+		.socialite-list {
+			li + li {
+				margin-left: 10px;
+			}
+		}
+
+		.socialite {
+			font-size: 14px;
+			width: 21px;
+			height: 21px;
+			line-height: 21px;
+		}
+	}
+
+	// Fixed
+	&.rd-navbar-fixed {
+
+	}
+}

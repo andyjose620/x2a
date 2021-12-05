@@ -1,0 +1,220 @@
+/** @section Utilities custom */
+
+
+.height-fill {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+
+	> * {
+		flex-grow: 1;
+		flex-shrink: 0;
+	}
+}
+
+
+// Object inline 
+.object-inline {
+	white-space: nowrap;
+	> * {
+		display: inline-block;
+		min-width: 20px;
+		vertical-align: top;
+		white-space: normal;
+	}
+
+	> * + * {
+		margin-left: 5px;
+	}
+}
+
+.oh {
+	position: relative;
+	overflow: hidden;
+}
+
+
+// Text decorations
+.text-decoration-lines {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+
+	&-content {
+		position: relative;
+		display: inline-block;
+		min-width: 170px;
+		font-size: 13px;
+		text-transform: uppercase;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			height: 1px;
+			background: $gray-200;
+			top: 50%;
+			width: 100vw;
+		}
+
+		&::before {
+			left: 0;
+			transform: translate3d(-100%, 0, 0);
+		}
+
+		&::after {
+			right: 0;
+			transform: translate3d(100%, 0, 0);
+		}
+	}
+}
+
+* + .text-decoration-lines {
+	margin-top: 30px;
+}
+
+.text-decoration-custom {
+	font-size: 16px;
+	letter-spacing: .1em;
+}
+
+
+// Rights
+p.rights {
+	font-family: $font-family-base;
+	font-weight: 700;
+	letter-spacing: -.02em;
+	a {
+		color: inherit;
+		text-decoration: underline;
+
+		&:hover {
+			color: $primary;
+		}
+	}
+}
+
+
+// JSColor Workaround
+[style*='z-index: 1000;'] {
+	z-index: $zindex-layout-panel + 1 !important;
+}
+
+.text-block {
+	> * {
+		margin-left: .125em;
+		margin-right: .125em;
+	}
+}
+
+
+
+// Modal
+.modal-1 {
+	align-items: center;
+
+	&.show {
+
+		.modal-content {
+			transform: none;
+		}
+	}
+
+	.modal-dialog {
+		width: auto;
+		margin: 10px;
+		max-width: none;
+	}
+
+	.modal-content {
+		border: none;
+		background: transparent;
+		width: 100%;
+		transform: translate3d( 0, 20%, 0 );
+		transition: all .25s ease;
+	}
+
+	.modal-header {
+		border: none;
+		padding: 0 15px 15px 0;
+	}
+
+	.modal-body {
+		padding: 30px 20px;
+		background: $white;
+	}
+
+	.close {
+		cursor: pointer;
+		float: none;
+		color: $white;
+		opacity: 1;
+		text-shadow: none;
+
+		&:not(.disabled):hover {
+			color: $white;
+			opacity: .8;
+		}
+	}
+
+	.modal-title,
+	.form-label,
+	.form-input {
+		color: $gray-900;
+	}
+
+	.form-input {
+		border-bottom-color: $gray-150;
+	}
+
+	.button {
+		&:hover,
+		&:active,
+		&.active {
+			background: darken($primary, 15%);
+			border-color: darken($primary, 15%);
+		}
+	}
+
+	* + .rd-mailform { margin-top: 30px; }
+
+	// Medium ≥576px
+	@include media-breakpoint-up(sm) {
+
+		.modal-dialog {
+			max-width: 400px;
+			margin: 30px auto;
+		}
+		.modal-body { padding: 30px; }
+	}
+
+	// Medium ≥768px
+	@include media-breakpoint-up(md) {
+
+		.modal-dialog { max-width: 700px; }
+	}
+}
+
+.desktop {
+	// Large ≥992px
+	@include media-breakpoint-up(lg) {
+
+		// Modal
+		.modal-1 {
+
+			.modal-dialog {
+				display: flex;
+				align-items: center;
+				height: calc( 100% - 60px );
+			}
+		}
+	}
+}
+
+.modal-backdrop {
+
+	&.show {
+		opacity: .8;
+	}
+}

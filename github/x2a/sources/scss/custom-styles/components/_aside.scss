@@ -1,0 +1,167 @@
+/** section Aside */
+
+// Aside
+.aside-item {
+	background-color: $gray-650;
+	padding: 48px 20px 50px 27px;
+	text-align: center;
+
+	// Extra large ≥1200px
+	@include media-breakpoint-up(xl) {
+		width: 330px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	&.aside-item-search {
+		padding: 7px 20px 5px 27px;
+	}
+
+	.form-label,
+	.form-input {
+		color: $white;
+		font-weight: 400;
+		padding-right: 30px;
+	}
+
+	.rd-form {
+		button {
+			position: absolute;
+			right: 0;
+			top: 50%;
+			padding-right: 0;
+			transform: translate(0, -50%);
+
+			border: 0;
+			background-color: transparent;
+			transition: $transition-base;
+		}
+	}
+
+	.rd-search {
+
+		.form-input {
+			border: 0;
+		}
+
+		button {
+			cursor: pointer;
+			font-size: 20px;
+			color: $white;
+
+			&:hover {
+				color: $primary;
+			}
+		}
+	}
+
+	.rd-mailform {
+		margin-top: 23px;
+	}
+
+	p {
+		color: $white-5;
+	}
+}
+
+.aside-title {
+	position: relative;
+	padding-bottom: 21px;
+	font-weight: 700;
+	letter-spacing: .1em;
+
+	+ * {
+		margin-top: 29px;
+	}
+
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		height: 3px;
+		width: 50px;
+		background-color: $primary;
+		left: 50%;
+		bottom: 0;
+		transform: translate(-50%, 0);
+	}
+}
+
+.list-category {
+	position: relative;
+
+	&::before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 1px;
+		background-color: $white;
+		z-index: 0;
+	}
+
+	li + li {
+		margin-top: 14px;
+	}
+}
+
+.list-category-link {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	text-transform: uppercase;
+	border-left: 1px solid $white;
+	color: $white;
+	padding: 0 0 5px 20px;
+	position: relative;
+
+	&:hover,
+	&.active {
+		color: $primary;
+		border-color: $primary;
+	}
+}
+
+.list-category-title {
+	font-family: $font-family-base;
+	font-weight: 700;
+	letter-spacing: .1em;
+}
+
+.list-category-number {
+	font-size: 16px;
+	font-family: $font-family-fourth;
+}
+
+.aside-social-list {
+	margin-top: 23px;
+	@include group(10px);
+}
+
+.aside-tags-list {
+	display: flex;
+	flex-wrap: wrap;
+	@include group(11px, 10px)
+}
+
+.button-tags {
+	text-transform: uppercase;
+	font-family: $font-family-fourth;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .1em;
+	color: $white-5;
+	border: 1px solid $white-5;
+	padding: 8px 12px;
+	min-width: 73px;
+	border-radius: 10em;
+
+	&:hover {
+		color: $white;
+		border-color: $white;
+	}
+}
+
+

@@ -1,0 +1,1211 @@
+/**
+*  jPlayer
+* -----------------------------------------------------------------------------
+*/
+
+.jp-custom-playlist {
+	text-align: left;
+
+	li {
+		margin: 2px 0;
+		padding: 3px 12px;
+		background-color: #e4e4e4;
+
+		a:before {
+			display: inline-block;
+			margin-right: 6px;
+			font-family: $mdi;
+			content: "\f4f9";
+		}
+
+		&.playing {
+			a:before {
+				content: "\f4d3";
+			}
+
+			a {
+				color: $primary;
+			}
+		}
+	}
+}
+
+.jp-player-init {
+
+	&.jp-player-fixed {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 9999;
+
+		.jp-audio {
+			max-width: none;
+			padding: 0;
+			transition: $transition-base;
+			transform: translateY(100%);
+
+			&.jp-state-playing {
+				transform: translateY(0);
+			}
+		}
+
+		.jp-interface {
+			border-radius: 0;
+		}
+
+		.jp-no-solution,
+		.jp-playlist {
+			display: none;
+		}
+	}
+
+	/**
+	 * Player
+	 * -----------------------------------------------------------------------------
+	 */
+	.jp-jplayer {
+		height: 0 !important;
+		width: 0 !important;
+	}
+	.jp-interface {
+		display: flex;
+		background-color: #2b2d2d;
+		background-repeat: repeat-x;
+		background-image: linear-gradient(#4a4c4d, #2b2d2d);
+		border-radius: 3px 3px 0 0;
+		box-shadow: 0 1px 1px rgba($black, 0.5);
+		height: 30px;
+		position: relative;
+		width: 100%;
+		font-size: 15px;
+	}
+	/* jPlayer: Cotrols
+	----------------------------------------------- */
+	.jp-button {
+		float: left;
+	}
+	.jp-btn {
+		line-height: 1;
+		background: transparent;
+		border: 0;
+		border-radius: 0;
+		color: $white;
+		cursor: pointer;
+		display: block;
+		height: 30px;
+		margin: 0;
+		outline: none;
+		overflow: hidden;
+		padding: 0;
+		position: relative;
+		text-indent: 110%;
+		-webkit-transition: none;
+		transition: none;
+		white-space: nowrap;
+		width: 3.15em;
+	}
+	.jp-btn:before {
+		font-family: $mdi;
+		font-size: 28px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		text-align: center;
+		text-indent: 0;
+	}
+	.jp-btn:hover {
+		color: $white;
+	}
+	.jp-play:before {
+		content: "\f4f9";
+	}
+	.jp-mute:before {
+		content: "\f66d";
+	}
+	.jp-state-playing .jp-play:before {
+		content: "\f4d3";
+		text-indent: 0;
+	}
+	.jp-state-muted .jp-mute:before {
+		content: "\f66e";
+	}
+
+	.jp-previous:before {
+		content: "\f59d";
+	}
+	.jp-next:before {
+		content: "\f59c";
+	}
+
+	/* jPlayer: Progress Bar
+	----------------------------------------------- */
+	.jp-time-rail {
+		padding: 0.75em;
+	}
+	.jp-progress {
+		width: 100%;
+	}
+	.jp-seek-bar,
+	.jp-play-bar {
+		height: 0.3125em;
+		width: 0;
+	}
+	.jp-seek-bar {
+		background: #464849;
+		cursor: pointer;
+		position: relative;
+	}
+	.jp-play-bar {
+		animation: progress-bar 0.75s linear infinite;
+	}
+	/* jPlayer: Volume Bar
+	----------------------------------------------- */
+	.jp-volume-bar {
+		position: relative;
+		width: 40px;
+		height: 4px;
+		cursor: pointer;
+		background: $white;
+	}
+	.jp-volume-bar-value {
+		width: 0;
+		height: 4px;
+	}
+	/* Diagonal Background Bars */
+	.jp-play-bar,
+	.jp-volume-bar-value {
+		background-color: $primary;
+	}
+	/* jPlayer: Playlist
+	----------------------------------------------- */
+}
+
+.jp-state-playing {
+	.jp-mute:before {
+		content: "\f66b";
+	}
+}
+
+.jp-state-muted {
+	.jp-mute:before {
+		content: "\f66e";
+	}
+}
+
+// ================================
+
+/*
+ * Project: CirclePlayer
+ * http://www.jplayer.org
+ *
+ * Copyright (c) 2012 Happyworm Ltd
+ *
+ * Author: Silvia Benvenuti
+ * Edited by: Mark J Panaghiston
+ * Date: 2nd October 2012
+ * Artwork inspired by: http://forrst.com/posts/Untitled-CJz
+ */
+
+.cp-container {
+	position: relative;
+	width: 104px; /* 200 - (2 * 48) */
+	height: 104px;
+	background: url("../images/bgr.jpg") 0 0 no-repeat;
+	padding: 48px;
+	-webkit-tap-highlight-color: rgba($black, 0);
+	box-sizing: content-box;
+	margin-bottom: 20px;
+}
+
+.prototype-wrapper {
+	@include media-breakpoint-up(sm) {
+		display: flex;
+		justify-content: space-around;
+	}
+}
+
+.cp-container :focus {
+	border: none;
+	outline: 0;
+}
+
+.cp-buffer-1,
+.cp-buffer-2,
+.cp-progress-1,
+.cp-progress-2 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 104px;
+	height: 104px;
+	clip: rect(0px, 52px, 104px, 0);
+	-moz-border-radius: 52px;
+	border-radius: 52px;
+}
+
+.cp-buffer-1,
+.cp-buffer-2 {
+	//background:url("../images/buffer.png") 0 0 no-repeat;
+}
+
+/* FALLBACK for .progress
+ * (24 steps starting from 1hr filled progress, Decrease second value by 104px for next step)
+ * (It needs the container selector to work. Or use div)
+ */
+
+.cp-container .cp-fallback {
+	background: url("../images/progress_sprite.jpg") no-repeat;
+	background-position: 0 104px;
+}
+
+.cp-progress-1,
+.cp-progress-2 {
+	background: url("../images/progress.png") 0 0 no-repeat;
+}
+
+.cp-buffer-holder,
+.cp-progress-holder,
+.cp-circle-control {
+	position: absolute;
+	width: 104px;
+	height: 104px;
+}
+
+.cp-circle-control {
+	cursor: pointer;
+}
+
+.cp-buffer-holder,
+.cp-progress-holder {
+	clip: rect(0px, 104px, 104px, 52px);
+	display: none;
+}
+
+/* This is needed when progress is greater than 50% or for fallback */
+
+.cp-buffer-holder.cp-gt50,
+.cp-progress-holder.cp-gt50,
+.cp-progress-1.cp-fallback {
+	clip: rect(auto, auto, auto, auto);
+}
+
+.cp-controls {
+	margin: 0;
+	padding: 26px;
+}
+
+.cp-controls li {
+	list-style-type: none;
+	display: block;
+
+	/*IE Fix*/
+	position: absolute;
+}
+
+.cp-controls li a {
+	position: relative;
+	display: block;
+	width: 50px;
+	height: 50px;
+	text-indent: -9999px;
+	z-index: 1;
+	cursor: pointer;
+	transition: 0s;
+}
+
+.cp-controls .cp-play {
+	background: url("../images/controls.jpg") 0 0 no-repeat;
+}
+
+.cp-controls .cp-play:hover {
+	background: url("../images/controls.jpg") -50px 0 no-repeat;
+}
+
+.cp-controls .cp-pause {
+	background: url("../images/controls.jpg") 0 -50px no-repeat;
+}
+
+.cp-controls .cp-pause:hover {
+	background: url("../images/controls.jpg") -50px -50px no-repeat;
+}
+
+.cp-jplayer {
+	width: 0;
+	height: 0;
+}
+
+// ==================================================
+
+.jp-video-full {
+	width: 480px;
+	height: 270px;
+	position: static !important;
+}
+
+.jp-video.jp-state-full-screen {
+	.jp-jplayer,
+	.jp-jplayer {
+		width: 100% !important;
+		height: 100% !important;
+	}
+
+	&:not(.jp-state-playing) {
+		.jp-playlist {
+			pointer-events: all;
+			opacity: 1;
+		}
+	}
+
+	.jp-playlist {
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 1000;
+		pointer-events: none;
+		opacity: 0;
+		transition: $transition-base;
+		display: inline-block;
+		min-width: 400px;
+		background: rgba($black, .7);
+		border-radius: 8px;
+		padding: 12px 5px;
+
+		li {
+			&.jp-playlist-current {
+				a {
+					color: $primary;
+				}
+			}
+
+			a {
+				color: $white;
+			}
+		}
+
+		li + li {
+			border-top: 1px solid rgba(255, 255, 255, .12);
+		}
+	}
+}
+
+.jp-video-full .jp-jplayer {
+	top: 0;
+	left: 0;
+	position: fixed !important;
+	overflow: hidden;
+	z-index: 1000;
+}
+
+.jp-video-full .jp-gui {
+	position: fixed !important;
+	position: static; /* Rules for IE6 (full-screen) */
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+}
+
+.jp-video-full .jp-interface {
+	position: absolute !important;
+	position: relative; /* Rules for IE6 (full-screen) */
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+}
+
+.jp-video {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	position: relative;
+	-webkit-box-shadow: 0 0 20px rgba($black, .3);
+	-moz-box-shadow: 0 0 20px rgba($black, .3);
+	box-shadow: 0 0 20px rgba($black, .3);
+	background: #000000;
+
+	.jp-interface {
+		position: relative;
+		width: 100%;
+		height: 35px;
+		background-color: #f2f2f2;
+		box-shadow: inset 0 1px 0 #f7f7f7,
+		inset 0 -1px 0 #e2e2e2;
+	}
+
+	div.jp-controls-holder {
+		clear: both;
+		margin: 0 auto;
+		display: flex;
+		position: relative;
+		overflow: hidden;
+	}
+
+	a.jp-play,
+	a.jp-pause {
+		width: 40px;
+		height: 35px;
+		float: left;
+		text-indent: 110%;
+		outline: none;
+	}
+
+	a.jp-previous {
+		&:before {
+			content: "\f59d";
+			font-family: $mdi;
+		}
+	}
+	a.jp-next {
+		&:before {
+			content: "\f59c";
+			font-family: $mdi;
+		}
+	}
+
+	a.jp-previous,
+	a.jp-next {
+		position: relative;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		color: #706d6d;
+		display: none;
+
+		@include media-breakpoint-up(sm) {
+			display: flex;
+		}
+	}
+
+	a.jp-play {
+		background: url(../images/sprite.png) 0 0 no-repeat;
+	}
+
+	a.jp-pause {
+		background: url(../images/sprite.png) -40px 0 no-repeat;
+		display: none;
+	}
+
+	#seperator {
+		background-image: url(../images/seperator.png);
+		background-repeat: no-repeat;
+		width: 2px;
+		height: 35px;
+		float: left;
+		margin-top: 7px;
+		margin-right: 10px;
+	}
+
+	.jp-progress {
+		background: #706d6d;
+		border-radius: 5px;
+		box-shadow: inset 0 1px 4px rgba($black, .4),
+		0 1px 0 rgba(255, 255, 255, .4);
+		flex: 1;
+		height: 10px;
+		float: left;
+		margin-top: 13px;
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+
+	.jp-time-wrapper {
+		display: none;
+
+		@include media-breakpoint-up(sm) {
+			display: block;
+		}
+	}
+
+	.jp-seek-bar {
+		width: 0;
+		height: 100%;
+		cursor: pointer;
+	}
+
+	.jp-seeking-bg {
+		background: #575555;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+
+	.jp-play-bar {
+		width: 0;
+		height: 10px;
+		position: relative;
+		z-index: 9;
+		background-size: 12px 12px;
+		background-color: darken($primary, 10%);
+		background-repeat: repeat-x;
+		border-radius: 5px;
+		background-image: linear-gradient($primary, darken($primary, 10%));
+		background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, transparent 75%, transparent);
+		background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, transparent 75%, transparent);
+	}
+
+	.jp-play-bar span {
+		position: absolute;
+		top: -3px;
+		right: -12px;
+		background: url(../images/handle.png) no-repeat center;
+		width: 16px;
+		height: 17px;
+	}
+
+	.jp-current-time,
+	.jp-duration {
+		font-size: 11px;
+		font-family: Arial;
+		color: $gray-700;
+		margin-top: 12px;
+		float: left;
+	}
+	.jp-current-time {
+		float: left;
+		display: inline;
+	}
+	.jp-duration {
+		float: left;
+		display: inline;
+		text-align: right;
+	}
+	.jp-current-time {
+		margin-left: 10px;
+	}
+	.jp-duration {
+		margin-right: 10px;
+	}
+	.time-sep {
+		float: left;
+		margin: 13px 3px 0 3px;
+		font-size: 11px;
+		font-family: Arial;
+		color: $gray-700;
+	}
+
+	a.jp-mute,
+	a.jp-unmute {
+		text-indent: -9999px;
+		float: left;
+		height: 35px;
+		outline: none;
+	}
+
+	.jp-mute {
+		float: left;
+		background: url(../images/sprite.png) -80px 0 no-repeat;
+		margin-top: 1px;
+		margin-left: -10px;
+		width: 35px;
+	}
+
+	a.jp-unmute {
+		background: url(../images/sprite.png) -115px 0 no-repeat;
+		margin-top: 1px;
+		margin-left: -13px;
+		display: none;
+		width: 38px;
+	}
+
+	.jp-volume-bar {
+		float: left;
+		margin-top: 13px;
+		margin-right: 10px;
+		overflow: hidden;
+		width: 70px;
+		height: 10px;
+		cursor: pointer;
+		background: $gray-600;
+		border-radius: 5px;
+		box-shadow: inset 0 1px 4px rgba($black, .4),
+		0 1px 0 rgba(255, 255, 255, .4);
+	}
+
+	.jp-volume-bar-value {
+		background: rgba(112, 109, 109, .01);
+		width: 0;
+		height: 10px;
+		position: relative;
+	}
+
+	.jp-volume-bar-value span {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: url(../images/volume.png) no-repeat center;
+		width: 11px;
+		height: 10px;
+	}
+
+	.jp-full-screen {
+		background: url(../images/sprite.png) -150px 0 no-repeat;
+		float: left;
+		width: 40px;
+		height: 35px;
+		text-indent: -9999px;
+		margin-left: -15px;
+		outline: none;
+	}
+
+	.jp-restore-screen {
+		background: url(../images/sprite.png) -150px 0 no-repeat;
+		float: left;
+		width: 40px;
+		height: 35px;
+		text-indent: -9999px;
+		margin-left: -15px;
+		outline: none;
+	}
+
+	.jp-playlist {
+		li {
+			padding: 3px 0;
+
+			&.jp-playlist-current {
+				a {
+					color: $white;
+				}
+			}
+		}
+	}
+
+	.jp-jplayer {
+		cursor: pointer;
+		font-size: 0;
+		overflow: hidden;
+
+		img {
+			//position: absolute;
+			//width: 100% !important;
+			//height: 100% !important;
+		}
+
+		video,
+		& {
+			//width: 100% !important;
+			//height: auto !important;
+		}
+	}
+}
+
+
+// Player Classic
+.jp-classic {
+	max-width: 266px;
+	margin-left: auto;
+	margin-right: auto;
+
+	&:hover {
+		.jp-current-time,
+		.jp-controls {
+			opacity: 1;
+		}
+		.jp-panel-controls {
+			&::before {
+				opacity: .75;
+			}
+		}
+	}
+
+	.jp-seek-bar {
+		position: absolute;
+		min-width: 100% !important;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 7px;
+		background-color: $gray-500;
+	}
+
+	.jp-current-time {
+		position: absolute;
+		top: 17px;
+		right: 11px;
+		letter-spacing: .1em;
+		opacity: 0;
+		transition: $transition-base;
+	}
+
+	.jp-panel-controls {
+		position: relative;
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: $gray-800;
+			opacity: 0;
+			transition: $transition-base;
+		}
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.jp-controls {
+		position: absolute;
+		top: 44%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		transition: $transition-base;
+	}
+
+	.jp-btn {
+		transition: $transition-base;
+		&:hover {
+			color: $primary;
+		}
+	}
+
+	.jp-play {
+		width: 61px;
+		min-width: 61px;
+		height: 61px;
+		min-height: 61px;
+		line-height: 56px;
+		font-size: 38px;
+		border: 2px solid $white;
+		border-radius: 10em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: transparent;
+		transition: $transition-base;
+
+		&:hover {
+			background-color: $white;
+		}
+
+		&::before {
+			font-size: 38px;
+		}
+
+	}
+
+	.jp-play-bar {
+		height: 100%;
+		background-color: $primary;
+	}
+
+	.jp-classic-body {
+		padding: 18px 15px 34px 30px;
+		background-color: $white;
+		color: $gray-500;
+	}
+
+	.jp-playlist {
+		font-size: 18px;
+		text-align: left;
+		letter-spacing: .02em;
+		li {
+			display: none;
+			&.jp-playlist-current {
+				display: block;
+			}
+		}
+
+	}
+
+	.jp-playlist-current {
+		color: $gray-900;
+		font-weight: 600;
+	}
+
+	.jp-artist {
+		letter-spacing: .015em;
+		font-size: 14px;
+		color: $gray-500;
+		display: inline-block;
+		font-weight: 600;
+	}
+
+	.jp-classic-linklist {
+		margin-top: 16px;
+		display: flex;
+		@include spacing(12px, 8px);
+
+		span {
+			padding-left: 5px;
+		}
+
+		li {
+			a {
+				color: $gray-500;
+				transition: $transition-base;
+				&:hover {
+					color: $gray-900;
+				}
+		}
+
+		}
+
+		li + li {
+
+			&::before {
+				content: '';
+				display: inline-block;
+				position: relative;
+				margin-right: 15px;
+				top: 3px;
+				width: 1px;
+				height: 18px;
+				background-color: $gray-150;
+			}
+		}
+	}
+}
+
+
+// Player Modern
+.jp-modern {
+
+	.jp-playlist {
+		margin-top: 35px;
+	}
+
+	.jp-playlist-inner {
+		counter-reset: li;
+
+		// Medium ≥576px
+		@include media-breakpoint-up(sm) {
+			column-count: 2;
+			max-width: 100%;
+		}
+
+		> li {
+			margin-bottom: 9px;
+			width: 100%;
+			max-width: 100%;
+
+			> div {
+				&:before {
+					content: counter(li, decimal-leading-zero);
+					counter-increment: li;
+					color: $white-5;
+					margin-right: 22px;
+					letter-spacing: .05em;
+				}
+
+				a {
+					letter-spacing: .1em;
+				}
+			}
+		}
+	}
+
+	.jp-playlist-item {
+		color: $white;
+	}
+
+	.jp-playlist-current {
+		color: $primary;
+	}
+
+	.jp-play {
+		width: 57px;
+		height: 57px;
+		line-height: 56px;
+		font-size: 38px;
+		border: 2px solid $white;
+		border-radius: 10em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		&::before {
+			font-size: 26px;
+		}
+	}
+
+	.jp-modern-interface {
+		height: 57px;
+		display: flex;
+		align-items: center;
+	}
+
+	.jp-seek-bar {
+		background-color: $white;
+	}
+
+	.jp-play-bar {
+		background-color: $primary;
+	}
+
+	.jp-seek-bar,
+	.jp-play-bar {
+		height: 4px;
+	}
+
+	&.jp-state-playing .jp-play:before {
+		content: "\f4d3";
+	}
+
+	.jp-time-rail {
+		padding: 20px;
+		flex-grow: 1;
+	}
+
+	.jp-modern-linklist {
+		display: flex;
+		@include spacing(12px, 8px);
+
+		// Medium ≥576px
+		@include media-breakpoint-up(sm) {
+			margin-left: 38px;
+		}
+
+		span {
+			padding-left: 5px;
+		}
+
+		li {
+			a {
+				color: $white-5;
+				transition: $transition-base;
+				&:hover {
+					color: $primary;
+				}
+			}
+		}
+
+		li + li {
+
+			&::before {
+				content: '';
+				display: inline-block;
+				position: relative;
+				margin-right: 15px;
+				top: 3px;
+				width: 1px;
+				height: 18px;
+				background-color: $gray-150;
+			}
+		}
+	}
+
+	.jp-modern-footer {
+		margin-top: 30px;
+		padding-top: 30px;
+		display: flex;
+		border-top: 1px solid $white-1;
+		flex-direction: column;
+
+		// Medium ≥576px
+		@include media-breakpoint-up(sm) {
+			flex-direction: row;
+		}
+	}
+
+}
+
+
+// Player Creative
+div.jp-creative {
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	transform: translateX(-50%);
+
+	// Large ≥992px
+	@include media-breakpoint-up(lg) {
+		top: 90px;
+	}
+
+	.jp-controls {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 10px 0;
+	}
+
+	.jp-btn {
+		transition: $transition-base;
+
+		&:before {
+			font-size: 18px;
+		}
+
+		&:hover {
+			color: $primary;
+		}
+	}
+
+	.jp-previous,
+	.jp-next {
+		font-size: 20px;
+		width: 20px;
+		height: 20px;
+		right: 1px;
+	}
+
+	.jp-mute {
+		width: 16px;
+		height: 16px;
+	}
+
+	.jp-play {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		border-radius: 10em;
+		border: 1px solid $white;
+
+		&::before {
+			top: 50%;
+			left: 50%;
+			right: auto;
+			bottom: auto;
+			transform: translate(-50%, -50%);
+
+			.jp-state-playing & {
+				content: '';
+			}
+		}
+
+		&:hover {
+			background-color: $white;
+		}
+	}
+
+	&.jp-state-playing {
+		.jp-play {
+			&::before {
+				content: '';
+			}
+		}
+	}
+
+	.jp-time-rail {
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		padding: 0;
+	}
+
+	.jp-progress {
+		margin: auto 20px auto 10px;
+		width: 62px;
+		height: 12px;
+		position: relative;
+		background-color: transparent;
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background-color: $white-1;
+		}
+	}
+
+	.jp-seek-bar {
+		background-color: transparent;
+		position: absolute;
+		top: 50%;
+		transform: translate(0, -50%);
+		height: 20px;
+	}
+
+	.jp-play-bar {
+		height: 1px;
+		top: 50%;
+		position: absolute;
+	}
+
+	.jp-volume-bar {
+		margin-left: 17px;
+		margin-right: 22px;
+		width: 124px;
+		min-width: 124px;
+		height: 12px;
+		position: relative;
+		background-color: transparent;
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background-color: $white-1;
+		}
+	}
+
+	.jp-volume-bar-value {
+		position: relative;
+		background-color: transparent;
+		height: 20px;
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 12px;
+			height: 12px;
+			border-radius: 10em;
+			background-color: $primary;
+			top: 0;
+			right: 0;
+			transform: translateX(50%);
+		}
+	}
+
+	.jp-playlist {
+		display: flex;
+		align-items: center;
+	}
+
+	.jp-playlist-inner {
+		li:not(.jp-playlist-current) {
+			display: none;
+		}
+	}
+
+	.jp-playlist-item {
+		color: $white;
+		text-transform: uppercase;
+		font-family: $font-family-base;
+		letter-spacing: .05em;
+	}
+
+}
+
+.jp-creative-interface {
+	display: flex;
+
+	// Small <576px
+	@include media-breakpoint-down(xs) {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+.jp-volume-controls {
+
+	display: flex;
+	align-items: center;
+
+	.mobile &,
+	.tablet & {
+		margin-right: 15px;
+	}
+}
+
+

@@ -1,0 +1,308 @@
+extends ../_skeleton
+
+include ../components/_ui-player-classic
+include ../components/_ui-post-classic
+
+block variables
+	- pageName = 'Home'
+
+block page
+	include ../sections/_header-classic
+	
+	//Swiper
+	section.section.swiper-container.swiper-slider.swiper-slider-1(data-loop='true' data-autoplay='5000' data-simulate-touch="false" data-slide-effect='fade')
+		.swiper-wrapper.text-center
+			.swiper-slide.context-dark(data-slide-bg='images/home1-01-1920x950.jpg')
+				.swiper-slide-caption.section-md
+					.container
+						.row.justify-content-lg-center
+							.col-lg-8
+								h5(data-caption-animate='fadeInUp' data-caption-delay='100') I Introduce New Style of DJing
+								h1(data-caption-animate='fadeInUp' data-caption-delay='200') Top DJing Skills
+								.button-wrap(data-caption-animate='fadeInUp', data-caption-delay='300')
+									a.button.button-modern.button-custom-size-1( href= '#' ) see all events
+			
+			.swiper-slide.context-dark(data-slide-bg='images/home1-02-1920x950.jpg')
+				.swiper-slide-caption.section-md
+					.container
+						.row.justify-content-lg-center
+							.col-lg-8
+								h5(data-caption-animate='fadeInUp' data-caption-delay='100') I Make Music to Feel & Enjoy
+								h1(data-caption-animate='fadeInUp' data-caption-delay='200') Your #1 DJ
+								.button-wrap(data-caption-animate='fadeInUp', data-caption-delay='300')
+									a.button.button-modern.button-custom-size-1( href= '#' ) see all events
+			
+			.swiper-slide.context-dark(data-slide-bg='images/home1-03-1920x950.jpg')
+				.swiper-slide-caption.section-md
+					.container
+						.row.justify-content-lg-center
+							.col-lg-8
+								h5(data-caption-animate='fadeInUp' data-caption-delay='100') It’s not just love for music
+								h1(data-caption-animate='fadeInUp' data-caption-delay='200') It’s My Passion
+								.button-wrap(data-caption-animate='fadeInUp', data-caption-delay='300')
+									a.button.button-modern.button-custom-size-1( href= '#' ) see all events
+		
+		//Swiper Pagination
+		.swiper-pagination
+	='\n'
+	
+	+parallax({
+		img: 'bg-home1-01-1920x1000.jpg'
+	})#events.section-lg.text-center
+		.container
+			h6.text-gray-600 Trident Festival in Duchonka, slovakia - June 26, 2019
+			h2 featured event
+			.row.justify-content-center
+				.col-lg-11
+					.post-event
+						.countdown(
+							data-type='until'
+							data-time='29 June 2019 00:00'
+						)
+						+img('events-02-571x313.jpg')
+						a.button.button-primary.button-lg( href='#' data-toggle='modal' data-target='#exampleModal' ) buy tickets
+	='\n'
+
+	section#videos.section.section-lg.bg-default.text-center
+		.container
+			h6.text-gray-600 latest videos from me and my Crew
+			h2 recent videos
+			include ../sections/_video-2
+	='\n'
+
+	section#bio.section.section-lg.bg-vide.bg-overlay(data-vide-bg="mp4: video/equalizer, poster: video/equalizer" data-vide-options='posterType: jpg, position: 0% 50%')
+		.container
+			.row.row-50.flex-lg-row-reverse
+				.col-xl-6.col-lg-4.text-center
+					.box-image-3
+						+img('home1-04-439x607.jpg')
+				.col-xl-6.col-lg-8
+					h6.text-gray-600 best edm tracks since 2010
+					h2 about me
+
+					//Bootstrap tabs
+					#tabs-1.tabs-custom.tabs-horizontal.tabs-corporate.tabs-about
+						//Nav tabs
+						ul.nav.nav-tabs
+							li.nav-item(role='presentation'): a.nav-link.active(href='#tabs-1-1' data-toggle='tab') Albums
+							li.nav-item(role='presentation'): a.nav-link(href='#tabs-1-2' data-toggle='tab') Awards
+							li.nav-item(role='presentation'): a.nav-link(href='#tabs-1-3' data-toggle='tab') Bio
+
+						//Tab panes
+						.tab-content
+							div#tabs-1-1.tab-pane.fade.show.active
+								// Owl Carousel
+								.owl-carousel.owl-carousel-about(
+									data-items=      '1'
+									data-sm-items=   '2'
+									data-md-items=   '2'
+									data-lg-items=   '2'
+									data-xl-items=   '2'
+									data-xxl-items=  '2'
+									data-margin=     '30'
+									data-nav=        'true'
+									data-mouse-drag= 'false'
+									data-autoplay=   'false'
+									data-loop=       'false'
+									data-nav-text=   ['prev', 'next']
+								)
+									+jp-classic({
+										i: 0,
+										img: 'album-01-266x228.jpg',
+										playerList: [
+											{
+												title: 'My Love',
+												artist: 'Both Worlds, 2013',
+												track: 'http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3'
+											},
+											{
+												title: 'Stay Wild (RamZ Remix)',
+												artist: 'Both Worlds Remixed, 2014',
+												track: 'http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3'
+											},
+											{
+												title: 'Hold Me Closer',
+												artist: 'Somewhere Somehow, 2019',
+												track: 'http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3'
+											}
+										]
+									})
+
+									+jp-classic({
+										i: 1,
+										img: 'album-04-266x228.jpg',
+										playerList: [
+											{
+												title: 'Outer Spirits',
+												artist: 'Change & Evolve, 2019',
+												track: 'http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3'
+											},
+											{
+												title: 'Stay Wild (RamZ Remix)',
+												artist: 'Both Worlds Remixed, 2014',
+												track: 'http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3'
+											},
+											{
+												title: 'My Love',
+												artist: 'Both Worlds, 2013',
+												track: 'http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3'
+											}
+										]
+									})
+
+									+jp-classic({
+										i: 2,
+										img: 'album-03-266x228.jpg',
+										playerList: [
+											{
+												title: 'Hold Me Closer',
+												artist: 'Somewhere Somehow, 2019',
+												track: 'http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3'
+											},
+											{
+												title: 'Stay Wild (RamZ Remix)',
+												artist: 'Both Worlds Remixed, 2014',
+												track: 'http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3'
+											},
+											{
+												title: 'My Love',
+												artist: 'Both Worlds, 2013',
+												track: 'http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3'
+											}
+										]
+									})
+
+									+jp-classic({
+										i: 3,
+										img: 'album-02-266x228.jpg',
+										playerList: [
+											{
+												title: 'Stay Wild (RamZ Remix)',
+												artist: 'Both Worlds Remixed, 2014',
+												track: 'http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3'
+											},
+											{
+												title: 'Hold Me Closer',
+												artist: 'Somewhere Somehow, 2019',
+												track: 'http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3'
+											},
+											{
+												title: 'My Love',
+												artist: 'Both Worlds, 2013',
+												track: 'http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3'
+											}
+										]
+									})
+
+									div: +img('album-cover-266x228.jpg').album-cover-img
+							div#tabs-1-2.tab-pane.fade
+								.box-timeline-wrap
+									.box-timeline
+										time.box-timeline-time(datetime='2019') 2019
+										h5.box-timeline-title: a(href='#') International EDM Awards - best album
+										p.text-gray-600 My second album, on which I worked for a long time, was awarded “Best Album 2019” title.
+									.box-timeline
+										time.box-timeline-time(datetime='2019') 2015
+										h5.box-timeline-title: a(href='#') DJ Awards – Best female producer
+										p.text-gray-600 2015 was a breakthrough year for me as I became officially known as the Best Male EDM Producer.
+									.box-timeline
+										a.button.button-primary.button-lg(href= '#') read more
+
+							div#tabs-1-3.tab-pane.fade
+								.box-timeline-wrap
+									.box-timeline
+										time.box-timeline-time(datetime='2019') 2019
+										p This year was marked by a few important collaborations with RamZ and Helen Williams, and a new release.
+									.box-timeline
+										time.box-timeline-time(datetime='2019') 2012
+										p In 2012, I released my first album “Both Worlds”, which contained my best old tracks and some new ones.
+									.box-timeline
+										time.box-timeline-time(datetime='2019') 2010
+										p I released my first single “Never Settle” in 2010 and it got instant attention of some independent labels.
+									.box-timeline
+										a.button.button-primary.button-lg(href= '#') read more
+	='\n'
+
+	section.section( data-lightgallery='group' )
+		.row.no-gutters
+			.col-lg-3.col-sm-6
+				.thumbnail-classic
+					a.thumbnail-classic-figure( data-lightgallery='item', href= 'images/image-original-01-1200x800.jpg' )
+						+img( 'home1-05-480x350.jpg' )
+					.thumbnail-classic-caption
+						h5.thumbnail-classic-title Dream Village
+						time.thumbnail-classic-time(datetime='2019-09-19') Sep 19, 2019
+			.col-lg-3.col-sm-6
+				.thumbnail-classic
+					a.thumbnail-classic-figure( data-lightgallery='item', href= 'images/image-original-02-1200x800.jpg' )
+						+img( 'home1-06-480x350.jpg' )
+					.thumbnail-classic-caption
+						h5.thumbnail-classic-title ULTRA MUSIC FESTIVAL
+						time.thumbnail-classic-time(datetime='2019-09-19') Sep 19, 2019
+			.col-lg-3.col-sm-6
+				.thumbnail-classic
+					a.thumbnail-classic-figure( data-lightgallery='item', href= 'images/image-original-03-1200x800.jpg' )
+						+img( 'home1-07-480x350.jpg' )
+					.thumbnail-classic-caption
+						h5.thumbnail-classic-title electric Zoo
+						time.thumbnail-classic-time(datetime='2019-09-19') Sep 19, 2019
+			.col-lg-3.col-sm-6
+				.thumbnail-classic
+					a.thumbnail-classic-figure( data-lightgallery='item', href= 'images/image-original-04-1200x800.jpg' )
+						+img( 'home1-08-480x350.jpg' )
+					.thumbnail-classic-caption
+						h5.thumbnail-classic-title life in color festival
+						time.thumbnail-classic-time(datetime='2019-09-19') Sep 19, 2019
+	='\n'
+
+	section#news.section.section-xl.bg-default.text-center
+		.container
+			h6.text-gray-600 from my blog
+			h2 latest news
+			.row.row-125
+				.col-md-6.col-lg-4
+					+post-classic({
+						img: 'post-classic-01-346x260.jpg',
+						title: 'teasing the demo of my new track ‘I need you’'
+					})
+
+				.col-md-6.col-lg-4
+					+post-classic({
+						img: 'post-classic-02-346x260.jpg',
+						title: 'Bring your favorite artist to your city!'
+					})
+
+				.col-md-6.col-lg-4
+					+post-classic({
+						img: 'post-classic-03-346x260.jpg',
+						title: 'New single: ‘rave on’ (raverz 2019 anthem)'
+					})
+	section#contacts.section.section-xxl.bg-default.text-center
+		.container
+			h6.text-gray-600 contacts
+			h2 get in touch
+			//RD Mailform
+			form.rd-form.rd-mailform.text-left(data-form-output="form-output-global", data-form-type='contact', method='post', action='bat/rd-mailform.php')
+				.row.row-40
+					.col-lg-4
+						.form-wrap
+							label.form-label(for="contact-name") Name
+							input#contact-name.form-input(type="text" name="name" data-constraints='@Required')
+					.col-lg-4
+						.form-wrap
+							label.form-label(for="contact-email") E-Mail
+							input#contact-email.form-input(type="email" name="email" data-constraints='@Required @Email')
+					.col-lg-4
+						.form-wrap
+							label.form-label(for="contact-phone") Phone
+							input#contact-phone.form-input(type="text" name="phone" data-constraints='@Required @PhoneNumber')
+					.col-lg-12
+						.form-wrap
+							label.form-label(for="contact-message") Message
+							textarea#contact-message.form-input(name="message" data-constraints='@Required')
+					.col-lg-12.text-center
+						.form-wrap
+							button(type="submit").button.button-lg.button-primary send message
+	='\n'
+
+	include ../sections/_footer-classic

@@ -1,0 +1,184 @@
+/** @section Panel custom */
+
+// Local variables
+$accordion-corporate-color: $gray-700;
+$accordion-corporate-background: $white;
+$accordion-corporate-border: #dedede;
+$accordion-corporate-content-color: $body-color;
+$accordion-corporate-arrow-color: $white;
+$accordion-corporate-arrow-background: $primary;
+$accordion-corporate-shadow: -1px 2px 5px 0px rgba(#444953, 0.12);
+$accordion-corporate-border-radius: 6px;
+$accordion-corporate-header-padding: 37px 30px 37px 0;
+$accordion-corporate-content-padding: 0 44px 33px nth($accordion-corporate-header-padding, 4);
+
+// Panel groups
+.card-group-custom {
+	margin-bottom: 0;
+
+	.card-header + .collapse > .card-body,
+	.card-header + .collapse > .list-group {
+		border-top: 0;
+	}
+
+	.card + .card {
+		margin-top: 0;
+	}
+}
+
+.card-group-custom.card-group-corporate {
+	.card + .card {
+	}
+}
+
+.card-custom {
+	display: block;
+	margin: 0;
+	background: inherit;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	text-align: left;
+	border-bottom: 1px solid $white-25;
+
+	a {
+		display: block;
+	}
+
+	// Panel heading
+	.card-header {
+		padding: 0;
+		border-bottom: 0;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		background-color: transparent;
+	}
+
+	// Panel contents
+	.card-body {
+		padding: 0;
+		border: 0;
+	}
+
+	.card-title {
+		margin-bottom: 0;
+	}
+}
+
+* + .card-group-custom {
+	margin-top: 35px;
+
+	@include media-breakpoint-up(md) {
+		margin-top: 50px;
+	}
+}
+
+// Panel corporate
+.card-corporate {
+	text-align: left;
+	backface-visibility: hidden;
+	overflow: hidden;
+
+	.card-title a {
+		text-transform: uppercase;
+		font-family: $font-family-base;
+		font-weight: 700;
+		letter-spacing: .025em;
+		position: relative;
+		z-index: 1;
+		padding: $accordion-corporate-header-padding;
+		font-size: 16px;
+		line-height: 1.25;
+		transition: 1.3s all ease;
+		color: $white;
+
+		// Open state
+		.card-arrow {
+			&::before {
+				background-color: $primary;
+			}
+			&:after {
+				opacity: 0;
+				visibility: hidden;
+			}
+		}
+
+		// Collapsed state
+		&.collapsed {
+			border-radius: $accordion-corporate-border-radius;
+			border-bottom-width: 0;
+
+			.card-arrow {&::before {
+				background-color: $white;
+			}
+				&:after {
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+		}
+	}
+
+	// Panel arrow
+	.card-arrow {
+		position: absolute;
+		top: 0;
+		bottom: -1px;
+		right: -1px;
+		z-index: 2;
+		width: 70px;
+		transition: .33s all ease;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			z-index: 4;
+			transform: translateY(-50%);
+			background: $accordion-corporate-arrow-color;
+		}
+
+		&::before {
+			width: 14px;
+			height: 2px;
+			right: 3px;
+		}
+
+		&::after {
+			width: 2px;
+			height: 14px;
+			right: 9px;
+		}
+	}
+
+	.collapse {
+		position: relative;
+		z-index: 1;
+		color: $accordion-corporate-content-color;
+		border-radius: 0 0 $accordion-corporate-border-radius $accordion-corporate-border-radius;
+	}
+
+	.card-body {
+		padding: $accordion-corporate-content-padding;
+		font-family: $font-family-fourth;
+		p {
+			letter-spacing: 0.003em;
+			line-height: 25px;
+		}
+	}
+
+	// Media queries
+	@include media-breakpoint-down(md) {
+		.card-title a,
+		.card-body {
+			padding-left: 25px;
+		}
+	}
+
+	@include media-breakpoint-up(md) {
+		.card-title a {
+			font-size: 18px;
+		}
+	}
+}

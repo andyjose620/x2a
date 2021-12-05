@@ -1,0 +1,59 @@
+/** @section Quotes */
+
+// Quote primary
+.quote-primary {
+}
+
+.quote-primary-mark {
+	position: relative;
+	left: 3px;
+	display: block;
+	width: 25px;
+	height: 18px;
+	fill: $gray-600;
+	flex-shrink: 0;
+
+	// Medium ≥576px
+	@include media-breakpoint-up(sm) {
+		width: 50px;
+		height: 36px;
+	}
+}
+
+.quote-primary-body {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.quote-primary-text {
+	border-left: 1px solid $gray-600;
+	margin-left: 15px;
+	padding-left: 15px;
+
+	h5 {
+		padding: 15px 0;
+	}
+
+	// Medium ≥576px
+	@include media-breakpoint-up(sm) {
+		margin-left: 35px;
+		padding-left: 26px;
+	}
+}
+
+.quote-primary-cite {
+	font-weight: 700;
+}
+
+.quote-primary-footer {
+	padding-left: 5px;
+}
+
+* + .quote-primary {
+	margin-top: 28px;
+}
+
+* + .quote-primary-footer {
+	margin-top: 8px;
+}
